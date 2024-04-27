@@ -6,7 +6,7 @@ const students = [
   imageUrl:"https://preview.redd.it/1sfkwpojame71.jpg?width=640&crop=smart&auto=webp&s=e5462c12b4a0aa551cc2f0a27587523731623980",
   name:"Harry Potter",
   trait: "Sacrificial Lamb",
-  house: "gryffindor",
+  house: "Gryffindor",
 },
 
 {id: 2,
@@ -71,6 +71,57 @@ for (const student of array) {
 studentsOnDom(students);
 return houseArray;
 };
+
+//TODO EVENT LISTNERS for each button
+const studentBtn = document.querySelector("#totalbtn");
+const gryffindorBtn = document.querySelector("#gryfbtn");
+const slytherinBtn = document.querySelector("#slythbtn");
+const hufflepuffBtn = document.querySelector("#huffbtn");
+const ravenclawBtn = document.querySelector("#ravebtn");
+
+studentBtn.addEventListener("click", () =>{
+  studentsOnDom(students)
+  console.log("what's wrong?");
+});
+
+gryffindorBtn.addEventListener("click", () =>{
+ studentsOnDom(students)
+});
+
+slytherinBtn.addEventListener("click" , () =>{
+  studentsOnDom(students);
+});
+
+hufflepuffBtn.addEventListener("click", () => {
+ studentsOnDom(students);
+});
+
+ravenclawBtn.addEventListener("click" , () => {
+  studentsOnDom(students);
+});
+
+//TODO - add an event for my filter function
+gryffindorBtn.addEventListener("click", () => {
+  const gryffindorHouse = filter(students, "Gryffindor");
+  studentsOnDom(gryffindorHouse);
+});
+
+slytherinBtn.addEventListener("click", () => {
+  const slytherinHouse = filter(students, "Slytherin");
+  studentsOnDom(slytherinHouse);
+});
+
+hufflepuffBtn.addEventListener("click", () => {
+  const hufflepuffHouse = filter(students, "Hufflepuff");
+  studentsOnDom(hufflepuffHouse);
+});
+
+ravenclawBtn.addEventListener("click", () => {
+  const ravenclawHouse = filter(students, "Ravenclaw");
+  studentsOnDom(ravenclawHouse);
+});
+
+
 //TODO - add start app function
 //const startSort = () =>{
  //studentsOnDom(students);
