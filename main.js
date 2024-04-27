@@ -38,17 +38,39 @@ const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
   selectedDiv.innerHTML = htmlToRender;
 };
+//iterate through array and get those cards on the DOM
+//const studentsOnDom = (students) => {
+let studentString = ""; //empty string that pulls our info from the array
+ students.forEach((student) => { 
+ studentString+= `<div class="card" style="width: 18rem;">
+  <img src="${student.imageUrl}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <p class="card-name">${student.name}</p>
+    <p class="card-trait">${student.trait}</p>
+    <p class="card-house">${student.house}</p>
+  </div>
+</div>`;
+});
+renderToDom("#hat", studentString);
 
-const studentsOnDom = (students) => {
-let studentString = ",";
- 
+//TODO - Filter by House
+const filter = (array, specificHouse) => {
+  const houseArray =[];
+  array.forEach((item) => {
+    if (item.house === specificHouse){
+      houseArray.push(item);
+    }
+});
 
+for (const student of array) {
+  if (student.house === specificHouse){
+    houseArray.push(student);
+  }
 }
+};
+//TODO - add start app function
+//const startSort = () =>{
+ //studentsOnDom(students);
+//}
 
-//<div class="card" style="width: 18rem;">
-//<img src="..." class="card-img-top" alt="...">
-//<div class="card-body">
-  //<h5 class="card-title">Card title</h5>
- // <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
- // <a href="#" class="btn btn-primary">Go somewhere</a>
-//</div>
+//startSort();
