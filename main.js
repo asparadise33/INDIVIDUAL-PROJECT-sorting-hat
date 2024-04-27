@@ -39,7 +39,7 @@ const renderToDom = (divId, htmlToRender) => {
   selectedDiv.innerHTML = htmlToRender;
 };
 //iterate through array and get those cards on the DOM
-//const studentsOnDom = (students) => {
+const studentsOnDom = (students) => {
 let studentString = ""; //empty string that pulls our info from the array
  students.forEach((student) => { 
  studentString+= `<div class="card" style="width: 18rem;">
@@ -52,6 +52,7 @@ let studentString = ""; //empty string that pulls our info from the array
 </div>`;
 });
 renderToDom("#hat", studentString);
+};
 
 //TODO - Filter by House
 const filter = (array, specificHouse) => {
@@ -67,6 +68,8 @@ for (const student of array) {
     houseArray.push(student);
   }
 }
+studentsOnDom(students);
+return houseArray;
 };
 //TODO - add start app function
 //const startSort = () =>{
