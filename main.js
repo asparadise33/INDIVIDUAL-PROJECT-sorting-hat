@@ -54,6 +54,21 @@ let studentString = ""; //empty string that pulls our info from the array
 renderToDom("#hat", studentString);
 };
 
+const formOnDom = () => {
+  let form = `<form>
+   <div class="row g-3">
+   <div class="col">
+     <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+   </div>
+   <div class="col">
+     <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+   </div>
+   </div>
+   </form> `;
+  
+  renderToDom("#studentForm", form);
+}
+  ;
 //TODO - Filter by House
 const filter = (array, specificHouse) => {
   const houseArray =[];
@@ -122,8 +137,24 @@ ravenclawBtn.addEventListener("click", () => {
 });
 
 
+//TODO - button click event to take me to the form!
+const formBtn = document.querySelector("#submitBtn");
+
+formBtn.addEventListener("click", () =>{
+  formOnDom()
+  console.log("you there?");
+});
+
+//TODO - add form to appear when button is clicked!
+
+
+
+
+
+//TODO - figure out why my cards are duplicating cd
+
 //TODO - add start app function
-//const startSort = () =>{
+//const startSort = () => {
  //studentsOnDom(students);
 //}
 
