@@ -66,12 +66,13 @@ const formOnDom = () => {
   }
 
   const form = document.querySelector("form")
+
   const createStudent = (e) => {
     e.preventDefault()
   
     const newStudent = {
       id: students.length +1, //name of our array and adding 1 to the length
-      name: document.querySelector("#userInput").value, //includes our new student's name
+      userInput: document.querySelector("#userInput").value //includes our new student's name
     }
     
     students.push(newStudent) //pushes our new student to the DOM
@@ -79,7 +80,7 @@ const formOnDom = () => {
     studentsOnDom(students)
     form.reset() //resets form to empty
   }
-//form.addEventListener("submit", createStudent)
+    form.addEventListener("submit", createStudent)
 //TODO form should clear and new student card added below the form TODO add a new student card to the array
 
 
