@@ -5,14 +5,12 @@ const students = [
   id: 1,
   imageUrl:"https://preview.redd.it/1sfkwpojame71.jpg?width=640&crop=smart&auto=webp&s=e5462c12b4a0aa551cc2f0a27587523731623980",
   name:"Harry Potter",
-  trait: "Sacrificial Lamb",
   house: "Gryffindor",
 },
 
 {id: 2,
   imageUrl:"https://i.pinimg.com/236x/a8/4f/fa/a84ffab3f5c4b135167b0b6710deb51f.jpg",
   name:"Draco Malfoy",
-  trait: "Clever boy",
   house: "Slytherin",
 },
 
@@ -20,7 +18,6 @@ const students = [
   id: 3,
   imageUrl:"https://64.media.tumblr.com/9f65a2e708cd999f8c16b77dcba2e2c7/df3ed2a8819eef35-ba/s1280x1920/6322de1df614f52550ff6f3b56b5f3feb9c8a38e.png",
   name:"Cedric Diggory",
-  trait: "Brave, died young",
   house: "Hufflepuff",
 },
 
@@ -28,7 +25,6 @@ const students = [
   id: 4,
   imageUrl:"https://i.pinimg.com/736x/72/f2/b3/72f2b32d597729a9fb4eb2c79c7e2c93.jpg",
   name:"Luna Lovegood",
-  trait: "Wistful",
   house: "Ravenclaw",
 }
 ];
@@ -46,7 +42,6 @@ let studentString = ""; //empty string that pulls our info from the array
   <img src="${student.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-name">${student.name}</p>
-    <p class="card-trait">${student.trait}</p>
     <p class="card-house">${student.house}</p>
   </div>
 </div>`;
@@ -54,21 +49,50 @@ let studentString = ""; //empty string that pulls our info from the array
 renderToDom("#hat", studentString);
 };
 
+
+//TODO - function for my form to appear when we click a button on the sorting hat card
 const formOnDom = () => {
-  let form = `<form>
-   <div class="row g-3">
-   <div class="col">
-     <input type="text" class="form-control" placeholder="First name" aria-label="First name">
-   </div>
-   <div class="col">
-     <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
-   </div>
-   </div>
-   </form> `;
+  let formInfo = `<form> 
+  <div class="row g-3">
+  <div class="col">
+    <input type="text" id="userInput" class="form-control" placeholder="Enter your name here!" aria-label="First name">
+  </div>
+  <div class="col-auto">
+    <button type="submit" Id ="getSorted" class="btn btn-info">Get Sorted!!</button>
+  </div>
+  </form>` 
   
-  renderToDom("#studentForm", form);
-}
-  ;
+  renderToDom("#studentForm", formInfo);
+  }
+
+  const form = document.querySelector("form")
+  const createStudent = (e) => {
+    e.preventDefault()
+  
+    const newStudent = {
+      id: students.length +1, //name of our array and adding 1 to the length
+      name: document.querySelector("#userInput").value, //includes our new student's name
+    }
+    
+    students.push(newStudent) //pushes our new student to the DOM
+    console.log(newStudent)
+    studentsOnDom(students)
+    form.reset() //resets form to empty
+  }
+//form.addEventListener("submit", createStudent)
+//TODO form should clear and new student card added below the form TODO add a new student card to the array
+
+
+
+
+
+
+
+//TODO sort new student into a random
+// const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin" ];
+// const randomHouse = Math.floor(Math.randomHouse() * houses.length);
+// console.log(randomHouse, houses[random]);
+
 //TODO - Filter by House
 const filter = (array, specificHouse) => {
   const houseArray =[];
@@ -145,13 +169,12 @@ formBtn.addEventListener("click", () =>{
   console.log("you there?");
 });
 
-//TODO - add form to appear when button is clicked!
 
 
 
 
 
-//TODO - figure out why my cards are duplicating cd
+//TODO - figure out why my cards are duplicating 
 
 //TODO - add start app function
 //const startSort = () => {
