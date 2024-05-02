@@ -43,6 +43,7 @@ let studentString = ""; //empty string that pulls our info from the array
   <div class="card-body">
     <p class="card-name">${student.name}</p>
     <p class="card-house">${student.house}</p>
+    <button class="btn btn-danger" id="expel--${student.id}">Expel!</button>
   </div>
 </div>`;
 });
@@ -50,21 +51,21 @@ renderToDom("#hat", studentString);
 };
 
 
-//TODO - function for my form to appear when we click a button on the sorting hat card
-const formOnDom = () => {
-  let formInfo = `<form> 
-  <div class="row g-3">
-  <div class="col">
-    <input type="text" id="userInput" class="form-control" placeholder="Enter your name here!" aria-label="First name">
-  </div>
-  <div class="col-auto">
-    <button type="submit" Id ="getSorted" class="btn btn-info">Get Sorted!!</button>
-  </div>
-  </form>` 
+//TODO - function for my form to appear when we click a button on the sorting hat card - not working now but go back to this!
+// const formOnDom = () => {
+//   let formInfo = `<form> 
+//   <div class="row g-3">
+//   <div class="col">
+//     <input type="text" id="userInput" class="form-control" placeholder="Enter your name here!" aria-label="First name">
+//   </div>
+//   <div class="col-auto">
+//     <button type="submit" Id ="getSorted" class="btn btn-info">Get Sorted!!</button>
+//   </div>
+//   </form>` 
   
-  renderToDom("#studentForm", formInfo);
-  }
-
+//   renderToDom("#studentForm", formInfo);
+//   }
+//TODO form should clear and new student card added below the form TODO add a new student card to the array
   const form = document.querySelector("form")
 
   const createStudent = (e) => {
@@ -81,17 +82,11 @@ const formOnDom = () => {
     form.reset() //resets form to empty
   }
     form.addEventListener("submit", createStudent)
-//TODO form should clear and new student card added below the form TODO add a new student card to the array
 
 
-
-
-
-
-
-//TODO sort new student into a random
+//TODO sort new student into a random house
 // const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin" ];
-// const randomHouse = Math.floor(Math.randomHouse() * houses.length);
+// const randomHouse = Math.floor(Math.randomHouse() *4 houses.length);
 // console.log(randomHouse, houses[random]);
 
 //TODO - Filter by House
@@ -111,6 +106,25 @@ for (const student of array) {
 studentsOnDom(students);
 return houseArray;
 };
+
+//TODO add an expel student button
+//TODO add a function for the expelled students to go to Voldy's army
+
+const expel = document.querySelector("#hat")
+
+expel.addEventListener('click', (e) => {
+ if (e.target.id.includes("expel")) {
+  const [, id] = e.target.id.split("--")
+  const index = students.findIndex(e => e.id === Number(id))
+  students.splice(index, 1)
+  studentsOnDom(students)
+ }
+
+})
+//TODO need an array to push the expelled students to, empty?
+//TODO need a DIV for voldy's army
+//TODO need an If statement for expelled students
+
 
 //TODO EVENT LISTNERS for each button
 const studentBtn = document.querySelector("#totalbtn");
