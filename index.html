@@ -8,6 +8,8 @@
   <title>Sorting Hat!</title>
 </head>
 <body>
+ 
+
  <h1>Welcome to Hogwarts!</h1> 
 
  <div id="buttons">
@@ -20,6 +22,7 @@
 
  <div class="card" id="sortingHat" style="width: 18rem;">
   <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT5Fd7CnFZOVXOWuIsQv5ndmGTMeFA9vLNWftOTjMDRUJ5-1bL1zGuRXrG-2sO41kDgrype0uGR9kWDH8mXTdq6aoAC7E95JaHbh11Iv9snjL35i3_U3-Ac0riVpg&usqp=CAc" class="card-img-top" alt="a talking wrinkly hat">
+  
   <div class="card-body">
     <h5 class="card-title">Are you Ready to get sorted?!</h5>
     <p class="card-text">Click the button below, to fill out your admissions form, and find out which Hogwart's House you're assigned to!</p>
@@ -27,9 +30,24 @@
   </div>
 </div>
 
+
+<div id="voldyArmy"></div>
+
+<form> 
+  <div id="studentForm" class="row g-3">
+    <div class="col">
+      <input type="text" id="userInput" class="form-control" placeholder="Enter your name here!" aria-label="First name">
+    </div>
+    <div class="col-auto">
+      <button type="submit" Id ="getSorted" class="btn btn-info">Get Sorted!!</button>
+    </div>
+  </div>
+    </form>
+  
+
+
 <div id="hat"></div>
-<div id="studentForm">
-</div>
+
  
 
   <script src="main.js"></script>
