@@ -51,21 +51,23 @@ renderToDom("#hat", studentString);
 
 
 //TODO - function for my form to appear when we click a button on the sorting hat card - not working now but go back to this!
-// const formOnDom = () => {
-//   let formInfo = `<form> 
-//   <div class="row g-3">
-//   <div class="col">
-//     <input type="text" id="userInput" class="form-control" placeholder="Enter your name here!" aria-label="First name">
-//   </div>
-//   <div class="col-auto">
-//     <button type="submit" Id ="getSorted" class="btn btn-info">Get Sorted!!</button>
-//   </div>
-//   </form>` 
+const formOnDom = () => {
+  let formInfo = `<form> 
+  <div id="studentForm" class="row g-3">
+  <div class="col">
+    <input type="text" id="name" class="form-control" placeholder="Enter your name here!" aria-label="First name">
+  </div>
+  <div class="col-auto">
+  <button type="submit" class="btn btn-info" id="form-submit">Get Sorted!!</button>
+  </div>
+</div>
+  </form>` 
   
-//   renderToDom("#studentForm", formInfo);
-//   }
+  renderToDom("#newForm", formInfo);
+  }
+
 //TODO form should clear and new student card added below the form TODO add a new student card to the array
-  const form = document.querySelector("form")
+  const form = document.querySelector("#newForm")
   const createStudent = (e) => {
     e.preventDefault()
     const newStudent = {
@@ -75,10 +77,16 @@ renderToDom("#hat", studentString);
     students.push(newStudent) //pushes our new student to the DOM
     console.log(newStudent)
     studentsOnDom(students)
-    form.reset() //resets form to empty
+    form.reset()//resets form to empty
   }
-    form.addEventListener("submit", createStudent)
+  form.addEventListener("submit", createStudent)
 
+//TODO - button click event to take me to the form!----DONE
+const formBtn = document.querySelector("#submitBtn");
+formBtn.addEventListener("click", () =>{
+  formOnDom()
+  console.log("you there?");
+});
 
 //TODO sort new student into a random house
 // const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin" ];
@@ -100,7 +108,6 @@ return houseArray;
 //TODO add an expel student button and function to repaint the DOM
 
 const expel = document.querySelector("#hat")
-
 expel.addEventListener('click', (e) => {
  if (e.target.id.includes("expel")) {
   const [, id] = e.target.id.split("--")
@@ -131,75 +138,66 @@ const voldyOnDom = (vArmy) => {
   
 
 
-//TODO need an array to push the expelled students to, empty?
-//TODO need a DIV for voldy's army---done
-//TODO need an If statement for expelled students
-
-
+//TODO need an array to push the expelled students to, empty?---DONE
+//TODO need a DIV for voldy's army---DONE
 //TODO EVENT LISTNERS for each button
-const studentBtn = document.querySelector("#totalbtn");
-const gryffindorBtn = document.querySelector("#gryfbtn");
-const slytherinBtn = document.querySelector("#slythbtn");
-const hufflepuffBtn = document.querySelector("#huffbtn");
-const ravenclawBtn = document.querySelector("#ravebtn");
+const studentBtn = document.querySelector("#totalbtn")
+const gryffindorBtn = document.querySelector("#gryfbtn")
+const slytherinBtn = document.querySelector("#slythbtn")
+const hufflepuffBtn = document.querySelector("#huffbtn")
+const ravenclawBtn = document.querySelector("#ravebtn")
 
 studentBtn.addEventListener("click", () =>{
   studentsOnDom(students)
-  console.log("what's wrong?");
-});
+  console.log("what's wrong?")
+})
 
 gryffindorBtn.addEventListener("click", () =>{
  studentsOnDom(students)
-});
+})
 
 slytherinBtn.addEventListener("click" , () =>{
-  studentsOnDom(students);
-});
+  studentsOnDom(students)
+})
 
 hufflepuffBtn.addEventListener("click", () => {
- studentsOnDom(students);
+ studentsOnDom(students)
 });
 
 ravenclawBtn.addEventListener("click" , () => {
-  studentsOnDom(students);
+  studentsOnDom(students)
 });
 
 //TODO - add an event for my filter function
 gryffindorBtn.addEventListener("click", () => {
-  const gryffindorHouse = filter(students, "Gryffindor");
-  studentsOnDom(gryffindorHouse);
+  const gryffindorHouse = filter(students, "Gryffindor")
+  studentsOnDom(gryffindorHouse)
 });
 
 slytherinBtn.addEventListener("click", () => {
-  const slytherinHouse = filter(students, "Slytherin");
-  studentsOnDom(slytherinHouse);
+  const slytherinHouse = filter(students, "Slytherin")
+  studentsOnDom(slytherinHouse)
 });
 
 hufflepuffBtn.addEventListener("click", () => {
-  const hufflepuffHouse = filter(students, "Hufflepuff");
-  studentsOnDom(hufflepuffHouse);
+  const hufflepuffHouse = filter(students, "Hufflepuff")
+  studentsOnDom(hufflepuffHouse)
 });
 
 ravenclawBtn.addEventListener("click", () => {
-  const ravenclawHouse = filter(students, "Ravenclaw");
-  studentsOnDom(ravenclawHouse);
-});
-
-
-//TODO - button click event to take me to the form!
-const formBtn = document.querySelector("#submitBtn");
-
-formBtn.addEventListener("click", () =>{
-  formOnDom()
-  console.log("you there?");
-});
+  const ravenclawHouse = filter(students, "Ravenclaw")
+  studentsOnDom(ravenclawHouse)
+})
 
 
 
 
 
 
-//TODO - figure out why my cards are duplicating 
+
+
+
+//TODO - figure out why my cards are duplicating---DONE
 
 //TODO - add start app function
 //const startSort = () => {
