@@ -3,27 +3,27 @@ console.log("here we go");
 const students = [
 {
   id: 1,
-  imageUrl:"https://preview.redd.it/1sfkwpojame71.jpg?width=640&crop=smart&auto=webp&s=e5462c12b4a0aa551cc2f0a27587523731623980",
+  //imageUrl:"https://preview.redd.it/1sfkwpojame71.jpg?width=640&crop=smart&auto=webp&s=e5462c12b4a0aa551cc2f0a27587523731623980",
   name:"Harry Potter",
   house: "Gryffindor",
 },
 
 {id: 2,
-  imageUrl:"https://i.pinimg.com/236x/a8/4f/fa/a84ffab3f5c4b135167b0b6710deb51f.jpg",
+  //imageUrl:"https://i.pinimg.com/236x/a8/4f/fa/a84ffab3f5c4b135167b0b6710deb51f.jpg",
   name:"Draco Malfoy",
   house: "Slytherin",
 },
 
 {
   id: 3,
-  imageUrl:"https://64.media.tumblr.com/9f65a2e708cd999f8c16b77dcba2e2c7/df3ed2a8819eef35-ba/s1280x1920/6322de1df614f52550ff6f3b56b5f3feb9c8a38e.png",
+  //imageUrl:"https://64.media.tumblr.com/9f65a2e708cd999f8c16b77dcba2e2c7/df3ed2a8819eef35-ba/s1280x1920/6322de1df614f52550ff6f3b56b5f3feb9c8a38e.png",
   name:"Cedric Diggory",
   house: "Hufflepuff",
 },
 
 {
   id: 4,
-  imageUrl:"https://i.pinimg.com/736x/72/f2/b3/72f2b32d597729a9fb4eb2c79c7e2c93.jpg",
+  //imageUrl:"https://i.pinimg.com/736x/72/f2/b3/72f2b32d597729a9fb4eb2c79c7e2c93.jpg",
   name:"Luna Lovegood",
   house: "Ravenclaw",
 }
@@ -39,7 +39,6 @@ const studentsOnDom = (students) => {
 let studentString = ""; //empty string that pulls our info from the array
  students.forEach((student) => { 
  studentString+= `<div class="card" style="width: 18rem;">
-  <img src="${student.imageUrl}" class="card-img-top" alt="...">
   <div class="card-body">
     <p class="card-name">${student.name}</p>
     <p class="card-house">${student.house}</p>
@@ -67,15 +66,12 @@ renderToDom("#hat", studentString);
 //   }
 //TODO form should clear and new student card added below the form TODO add a new student card to the array
   const form = document.querySelector("form")
-
   const createStudent = (e) => {
     e.preventDefault()
-  
     const newStudent = {
       id: students.length +1, //name of our array and adding 1 to the length
-      userInput: document.querySelector("#userInput").value //includes our new student's name
+      name: document.querySelector("#name").value //includes our new student's name
     }
-    
     students.push(newStudent) //pushes our new student to the DOM
     console.log(newStudent)
     studentsOnDom(students)
@@ -91,24 +87,17 @@ renderToDom("#hat", studentString);
 
 //TODO - Filter by House
 const filter = (array, specificHouse) => {
-  const houseArray =[];
+  const houseArray =[]
   array.forEach((item) => {
     if (item.house === specificHouse){
-      houseArray.push(item);
+      houseArray.push(item)
     }
-});
-
-for (const student of array) {
-  if (student.house === specificHouse){
-    houseArray.push(student);
-  }
-}
+})
 studentsOnDom(students);
 return houseArray;
 };
 
-//TODO add an expel student button
-//TODO add a function for the expelled students to go to Voldy's army
+//TODO add an expel student button and function to repaint the DOM
 
 const expel = document.querySelector("#hat")
 
@@ -116,13 +105,34 @@ expel.addEventListener('click', (e) => {
  if (e.target.id.includes("expel")) {
   const [, id] = e.target.id.split("--")
   const index = students.findIndex(e => e.id === Number(id))
-  students.splice(index, 1)
+  const voldyStudent = students.splice(index, 1)
+  voldyStudent.push(vArmy)
+  
   studentsOnDom(students)
+  voldyOnDom(voldyStudent)
  }
 
 })
+//TODO add a function for the expelled students 
+const vArmy = []
+const voldyOnDom = (vArmy) => {
+  let voldyStudentString = ""; //empty string that pulls our info from the array
+   vArmy.forEach((student) => { 
+    voldyStudentString += `<div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <p class="card-name">${student.name}</p>
+      <p class="card-house">${student.house}</p>
+      <button class="btn btn-danger" id="expel--${student.id}">Expel!</button>
+    </div>
+  </div>`
+  });
+  renderToDom("#voldyArmy", voldyStudentString);
+  }
+  
+
+
 //TODO need an array to push the expelled students to, empty?
-//TODO need a DIV for voldy's army
+//TODO need a DIV for voldy's army---done
 //TODO need an If statement for expelled students
 
 
