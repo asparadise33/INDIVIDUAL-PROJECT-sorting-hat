@@ -46,7 +46,7 @@ let studentString = ""; //empty string that pulls our info from the array
   </div>
 </div>`
 })
-renderToDom("#hat", studentString)
+renderToDom("#allRegStudents", studentString)
 }
 
 
@@ -101,10 +101,10 @@ const filter = (array, specificHouse) => {
 studentsOnDom(students);
 return houseArray;
 };
-const vArmy = []//empty array for voldy army expelled students
+//const vArmy = []//empty array for voldy army expelled students
 
 //TODO add an expel student button and function to repaint the DOM
-const expelled = document.querySelector("#hat")
+const expelled = document.querySelector("#allRegStudents")
 expelled.addEventListener('click', (e) => {
 
   console.log("expelButtonClick")
@@ -112,35 +112,31 @@ expelled.addEventListener('click', (e) => {
   const [, id] = e.target.id.split("--")
   const index = students.findIndex(e => e.id === Number(id))
   const voldyStudent = students.splice(index, 1)
-  vArmy.push(voldyStudent)
+  vFellas.push(voldyStudent)
   
   studentsOnDom(students)
   voldyOnDom(voldyStudent)
  }
 })
-//TODO add a function for the expelled students 
-
+//TODO add a function for the expelled students to go into new div 
+//const vArmy = []//empty array for voldy army expelled students
+const vFellas = []
 const voldyOnDom = (vArmy) => {
   let voldyStudentString = ""; //empty string that pulls our info from the array
-   vArmy.forEach((student) => { 
-    voldyStudentString += `<div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <p class="card-name">${student.name}</p>
-      <p class="card-house">${student.house}</p>
-      <button class="btn btn-danger" id="expel--${student.id}">Expel!</button>
-    </div>
-  </div>`
+  vArmy.forEach((student) => { 
+    voldyStudentString += `<div id="card" class="card" style="width: 18rem;">
+     <div class="card-body">
+       <p class="card-name">${student.name}</p>
+       <p class="card-house">${student.house}</p>
+       <button class="btn btn-danger" id="expel--${student.id}">Expel!</button>
+     </div>
+   </div>`
   });
-  renderToDom("#voldyArmy", voldyStudentString)
-  
-  //TODO sort new student into a random house
-  //Math.floor(Math.randomHouse() * houses.length)
-  //  console.log(randomHouseFunc)
-  //   //add a .push to add this item to my new card where do I push to voldystudent string?
-  //  houses.push(randomHouseFunc)
-  
-  // }
+  renderToDom("#voldyArmy", voldyStudentString);
 }
+  
+ 
+
 
 const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
 const getHouse= () => {
@@ -179,7 +175,7 @@ ravenclawBtn.addEventListener("click" , () => {
   studentsOnDom(students)
 });
 
-//TODO - add an event for my filter function
+//TODO - add an event for my filter function--DONE
 gryffindorBtn.addEventListener("click", () => {
   const gryffindorHouse = filter(students, "Gryffindor")
   studentsOnDom(gryffindorHouse)
