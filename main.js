@@ -73,7 +73,7 @@ const formOnDom = () => {
     const newStudent = {
       id: students.length +1, //name of our array and adding 1 to the length
       name: document.querySelector("#name").value, //includes our new student's name
-      house: randomHouseFunc
+      house: getHouse()
     }
     students.push(newStudent) //pushes our new student to the DOM
     console.log(newStudent)
@@ -142,9 +142,9 @@ const voldyOnDom = (vArmy) => {
 }
 
 const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
-const randomHouse = () => {
-  const randomHouseFunc = Math.floor(Math.Random() * houses.length)
-return randomHouseFunc
+const getHouse= () => {
+const randomHouse = houses[Math.floor(Math.random() * 4)]
+return randomHouse
 }
 
 
