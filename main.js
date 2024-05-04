@@ -27,8 +27,8 @@ const students = [
   name:"Luna Lovegood",
   house: "Ravenclaw",
 }
-];
-
+]
+//const houses = ["Gry ffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
 //utility funtion to get cards on the DOM
 const renderToDom = (divId, htmlToRender) => {
   const selectedDiv = document.querySelector(divId);
@@ -44,13 +44,13 @@ let studentString = ""; //empty string that pulls our info from the array
     <p class="card-house">${student.house}</p>
     <button class="btn btn-danger" id="expel--${student.id}">Expel!</button>
   </div>
-</div>`;
-});
-renderToDom("#hat", studentString);
-};
+</div>`
+})
+renderToDom("#hat", studentString)
+}
 
 
-//TODO - function for my form to appear when we click a button on the sorting hat card - not working now but go back to this!
+//TODO - function for my form to appear when we click a button on the sorting hat card - DONE
 const formOnDom = () => {
   let formInfo = `<form> 
   <div id="studentForm" class="row g-3">
@@ -66,13 +66,14 @@ const formOnDom = () => {
   renderToDom("#newForm", formInfo);
   }
 
-//TODO form should clear and new student card added below the form TODO add a new student card to the array
+//TODO form should clear and new student card added below the form TODO add a new student card to the array --DONE
   const form = document.querySelector("#newForm")
   const createStudent = (e) => {
     e.preventDefault()
     const newStudent = {
       id: students.length +1, //name of our array and adding 1 to the length
-      name: document.querySelector("#name").value //includes our new student's name
+      name: document.querySelector("#name").value, //includes our new student's name
+      house: randomHouseFunc
     }
     students.push(newStudent) //pushes our new student to the DOM
     console.log(newStudent)
@@ -88,10 +89,6 @@ formBtn.addEventListener("click", () =>{
   console.log("you there?");
 });
 
-//TODO sort new student into a random house
-// const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin" ];
-// const randomHouse = Math.floor(Math.randomHouse() *4 houses.length);
-// console.log(randomHouse, houses[random]);
 
 //TODO - Filter by House
 const filter = (array, specificHouse) => {
@@ -104,24 +101,24 @@ const filter = (array, specificHouse) => {
 studentsOnDom(students);
 return houseArray;
 };
+const vArmy = []//empty array for voldy army expelled students
 
 //TODO add an expel student button and function to repaint the DOM
-
-const expel = document.querySelector("#hat")
-expel.addEventListener('click', (e) => {
+const expelled = document.querySelector("#hat")
+expelled.addEventListener('click', (e) => {
  if (e.target.id.includes("expel")) {
   const [, id] = e.target.id.split("--")
   const index = students.findIndex(e => e.id === Number(id))
+  
   const voldyStudent = students.splice(index, 1)
-  voldyStudent.push(vArmy)
+  vArmy.push(voldyStudent)
   
   studentsOnDom(students)
   voldyOnDom(voldyStudent)
  }
-
 })
 //TODO add a function for the expelled students 
-const vArmy = []
+
 const voldyOnDom = (vArmy) => {
   let voldyStudentString = ""; //empty string that pulls our info from the array
    vArmy.forEach((student) => { 
@@ -133,14 +130,25 @@ const voldyOnDom = (vArmy) => {
     </div>
   </div>`
   });
-  renderToDom("#voldyArmy", voldyStudentString);
-  }
+  renderToDom("#voldyArmy", voldyStudentString)
+
+//TODO sort new student into a random house
+ const houses = ["Gry ffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
+  let randomHouseFunc = houses[Math.floor(Math.Random() *houses.length)]
+  return randomHouseFunc
+      //Math.floor(Math.randomHouse() * houses.length)
+//  console.log(randomHouseFunc)
+//   //add a .push to add this item to my new card where do I push to voldystudent string?
+//  houses.push(randomHouseFunc)
+
+// }
+}
   
 
 
 //TODO need an array to push the expelled students to, empty?---DONE
 //TODO need a DIV for voldy's army---DONE
-//TODO EVENT LISTNERS for each button
+//TODO EVENT LISTNERS for each button--DONE
 const studentBtn = document.querySelector("#totalbtn")
 const gryffindorBtn = document.querySelector("#gryfbtn")
 const slytherinBtn = document.querySelector("#slythbtn")
@@ -200,8 +208,7 @@ ravenclawBtn.addEventListener("click", () => {
 //TODO - figure out why my cards are duplicating---DONE
 
 //TODO - add start app function
-//const startSort = () => {
- //studentsOnDom(students);
-//}
-
-//startSort();
+// const startApp = () => {
+//  studentsOnDom(students)
+// }
+// startApp()
