@@ -38,7 +38,7 @@ const renderToDom = (divId, htmlToRender) => {
 const studentsOnDom = (students) => {
 let studentString = ""; //empty string that pulls our info from the array
  students.forEach((student) => { 
- studentString+= `<div class="card" style="width: 18rem;">
+ studentString+= `<div id="card" class="card" style="width: 18rem;">
   <div class="card-body">
     <p class="card-name">${student.name}</p>
     <p class="card-house">${student.house}</p>
@@ -106,10 +106,11 @@ const vArmy = []//empty array for voldy army expelled students
 //TODO add an expel student button and function to repaint the DOM
 const expelled = document.querySelector("#hat")
 expelled.addEventListener('click', (e) => {
+
+  console.log("expelButtonClick")
  if (e.target.id.includes("expel")) {
   const [, id] = e.target.id.split("--")
   const index = students.findIndex(e => e.id === Number(id))
-  
   const voldyStudent = students.splice(index, 1)
   vArmy.push(voldyStudent)
   
@@ -210,7 +211,7 @@ ravenclawBtn.addEventListener("click", () => {
 //TODO - figure out why my cards are duplicating---DONE
 
 //TODO - add start app function
-// const startApp = () => {
-//  studentsOnDom(students)
-// }
-// startApp()
+const startApp = () => {
+ studentsOnDom(students)
+}
+startApp()
