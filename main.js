@@ -38,7 +38,7 @@ const renderToDom = (divId, htmlToRender) => {
 const studentsOnDom = (students) => {
 let studentString = ""; //empty string that pulls our info from the array
  students.forEach((student) => { 
- studentString+= `<div class="card" style="width: 18rem;">
+ studentString+= `<div id="card" class="card" style="width: 18rem;">
   <div class="card-body">
     <p class="card-name">${student.name}</p>
     <p class="card-house">${student.house}</p>
@@ -73,7 +73,7 @@ const formOnDom = () => {
     const newStudent = {
       id: students.length +1, //name of our array and adding 1 to the length
       name: document.querySelector("#name").value, //includes our new student's name
-      house: randomHouseFunc
+      house: getHouse()
     }
     students.push(newStudent) //pushes our new student to the DOM
     console.log(newStudent)
@@ -106,10 +106,11 @@ const vArmy = []//empty array for voldy army expelled students
 //TODO add an expel student button and function to repaint the DOM
 const expelled = document.querySelector("#hat")
 expelled.addEventListener('click', (e) => {
+
+  console.log("expelButtonClick")
  if (e.target.id.includes("expel")) {
   const [, id] = e.target.id.split("--")
   const index = students.findIndex(e => e.id === Number(id))
-  
   const voldyStudent = students.splice(index, 1)
   vArmy.push(voldyStudent)
   
@@ -142,9 +143,9 @@ const voldyOnDom = (vArmy) => {
 }
 
 const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
-const randomHouse = () => {
-  const randomHouseFunc = Math.floor(Math.Random() * houses.length)
-return randomHouseFunc
+const getHouse= () => {
+const randomHouse = houses[Math.floor(Math.random() * 4)]
+return randomHouse
 }
 
 
@@ -210,7 +211,7 @@ ravenclawBtn.addEventListener("click", () => {
 //TODO - figure out why my cards are duplicating---DONE
 
 //TODO - add start app function
-// const startApp = () => {
-//  studentsOnDom(students)
-// }
-// startApp()
+const startApp = () => {
+ studentsOnDom(students)
+}
+startApp()
