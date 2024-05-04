@@ -28,6 +28,7 @@ const students = [
   house: "Ravenclaw",
 }
 ]
+const vFellas = []
 //const houses = ["Gry ffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
 //utility funtion to get cards on the DOM
 const renderToDom = (divId, htmlToRender) => {
@@ -106,23 +107,23 @@ return houseArray;
 //TODO add an expel student button and function to repaint the DOM
 const expelled = document.querySelector("#allRegStudents")
 expelled.addEventListener('click', (e) => {
-
-  console.log("expelButtonClick")
+console.log("expelButtonClick")
  if (e.target.id.includes("expel")) {
   const [, id] = e.target.id.split("--")
   const index = students.findIndex(e => e.id === Number(id))
-  const voldyStudent = students.splice(index, 1)
+  const voldyStudent = students.splice(index, 1)[0]
+  //students.splice(index,1)
   vFellas.push(voldyStudent)
-  
   studentsOnDom(students)
-  voldyOnDom(voldyStudent)
+  voldyOnDom(vFellas)
+  console.log(vFellas)
  }
 })
 //TODO add a function for the expelled students to go into new div 
 //const vArmy = []//empty array for voldy army expelled students
-const vFellas = []
+
 const voldyOnDom = (vArmy) => {
-  let voldyStudentString = ""; //empty string that pulls our info from the array
+  let voldyStudentString = "" //empty string that pulls our info from the array
   vArmy.forEach((student) => { 
     voldyStudentString += `<div id="card" class="card" style="width: 18rem;">
      <div class="card-body">
@@ -132,7 +133,7 @@ const voldyOnDom = (vArmy) => {
      </div>
    </div>`
   });
-  renderToDom("#voldyArmy", voldyStudentString);
+  renderToDom("#voldyArmy", voldyStudentString)
 }
   
  
