@@ -131,19 +131,21 @@ const voldyOnDom = (vArmy) => {
   </div>`
   });
   renderToDom("#voldyArmy", voldyStudentString)
-
-//TODO sort new student into a random house
- const houses = ["Gry ffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
-  let randomHouseFunc = houses[Math.floor(Math.Random() *houses.length)]
-  return randomHouseFunc
-      //Math.floor(Math.randomHouse() * houses.length)
-//  console.log(randomHouseFunc)
-//   //add a .push to add this item to my new card where do I push to voldystudent string?
-//  houses.push(randomHouseFunc)
-
-// }
-}
   
+  //TODO sort new student into a random house
+  //Math.floor(Math.randomHouse() * houses.length)
+  //  console.log(randomHouseFunc)
+  //   //add a .push to add this item to my new card where do I push to voldystudent string?
+  //  houses.push(randomHouseFunc)
+  
+  // }
+}
+
+const houses = ["Gryffindor", "Ravenclaw", "Hufflepuff", "Slytherin"]
+const randomHouse = () => {
+  const randomHouseFunc = Math.floor(Math.Random() * houses.length)
+return randomHouseFunc
+}
 
 
 //TODO need an array to push the expelled students to, empty?---DONE
