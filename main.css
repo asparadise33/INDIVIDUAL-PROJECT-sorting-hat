@@ -1,4 +1,7 @@
-
+body{
+  background-color: black !important;
+  color: antiquewhite !important;
+}
 #hat{
   display: flex;
   flex-wrap: wrap;
