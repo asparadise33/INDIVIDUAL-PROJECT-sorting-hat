@@ -1,14 +1,14 @@
 
 #hat{
   display: flex;
+  flex-wrap: wrap;
 
 }
 
 #allRegStudents{
-opacity: 70%;
+border: 2px black solid;
 }
 
 #voldyArmy{
-margin-top: 30px;
-background-color: hotpink;
+border: 5px red solid;
 }
